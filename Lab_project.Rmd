@@ -33,6 +33,12 @@ num_pets <- nrow(seattlepets)
 num_pets
 ```
 Write your narrative here
+Counting Pets:
+num_pets <- nrow(seattlepets): Counts the rows in the dataset seattlepets, storing the count in num_pets.
+Displaying Count:
+num_pets: Displays the total count of pets stored in num_pets.
+Brief Summary:
+This code counts the total number of pets in the dataset seattlepets and displays the count. Each row represents one pet in the dataset.
 
 
 
@@ -45,6 +51,14 @@ num_variables <- ncol(seattlepets)
 num_variables
 ```
 Write your narrative below
+Counting Variables:
+num_variables <- ncol(seattlepets): Calculates the number of variables (columns) in the seattlepets dataset.
+The ncol() function returns the number of variables in the data frame passed to it, which in this case is seattlepets.
+The resulting number is stored in the variable num_variables.
+Displaying Count:
+num_variables: Displays the total count of variables stored in num_variables.
+Brief Summary:
+This code counts the total number of variables in the seattlepets dataset and displays the count. Each column represents one variable in the dataset.
 
 
 
@@ -55,6 +69,15 @@ species_count <- table(seattlepets$species)
 species_count
 ```
 Write your narrative here
+Counting Species Frequency:
+species_count <- table(seattlepets$species): Calculates the frequency of each species in the seattlepets dataset.
+The table() function creates a frequency table of the specified variable, which in this case is species extracted from the seattlepets dataset.
+It counts the occurrences of each unique value in the species column and returns a table summarizing the counts.
+The resulting frequency table is stored in the variable species_count.
+Displaying Frequency Table:
+species_count: Displays the frequency table showing the count of each species.
+Brief Summary:
+This code calculates the frequency of each species recorded in the seattlepets dataset and displays the frequency table.
 
 
 `4. (2 points)
@@ -69,7 +92,13 @@ sorted_pet_names <- sort(pet_name_frequency, decreasing = TRUE)
 head(sorted_pet_names, 10)
 ```
 Write your narrative here
-
+Counting Pet Name Frequency:
+pet_name_frequency <- table(seattlepets$animal_name): Calculates the frequency of each pet name in the seattlepets dataset.
+The table() function creates a frequency table of the specified variable, which in this case is animal_name extracted from the seattlepets dataset.
+It counts the occurrences of each unique pet name in the animal_name column and returns a table summarizing the counts.
+The resulting frequency table is stored in the variable pet_name_frequency.
+Sorting the Frequency Table:
+sorted_pet_names <- sort(pet_name_frequency, decreasing = TRUE): Sorts the frequency table pet_name_frequency in descending order based on the count of each pet name
 
 `5. (2 points)
 ```{r}
@@ -83,7 +112,14 @@ sorted_pig_records <- arrange(pig_records, animal_name)
 sorted_pig_records
 ```
 Write your narrative here
-
+Filtering Records for Species Pig:
+pig_records <- filter(seattlepets, species == "Pig"): Filters the records in the seattlepets dataset to only include those where the species is “Pig”.
+The filter() function selects rows from the dataset where the condition species == "Pig" is met.
+It creates a subset of the dataset containing only records for pigs.
+The filtered records are stored in the variable pig_records.
+Arranging Filtered Records by Pet Names:
+sorted_pig_records <- arrange(pig_records, animal_name): Arranges the filtered pig records by pet names (animal_name) in ascending order.
+The arrange() function sorts the rows of the dataset based on the specified column, which in this case is animal_name
 
 
 
@@ -99,6 +135,11 @@ sorted_goat_records <- arrange(goat_records, animal_name)
 sorted_goat_records
 ```
 Write your narrative here
+Selecting Pet Name and Primary Breed for Species Goat:
+goat_records <- select(filter(seattlepets, species == "Goat"), animal_name, primary_breed): Selects only the columns animal_name and primary_breed from the seattlepets dataset for records where the species is “Goat”.
+The filter() function is used to subset the dataset to include only records where the species is “Goat”.
+The select() function then selects the specified columns (animal_name and primary_breed) from the filtered dataset.
+The selected records are stored in the variable goat_records.
 
 
 
@@ -120,6 +161,12 @@ sorted_records
 ```
 Write your narrative here
 
+Loading the Required Library:
+library(dplyr): Loads the dplyr library, which provides functions for data manipulation.
+Concatenating Columns into a Single Column:
+seattlepets <- mutate(seattlepets, pet = paste(animal_name, species, sep = " - ")): Creates a new column named “pet” in the seattlepets dataset by concatenating the columns animal_name and species with a separator (“-”).
+The mutate() function is used to add new variables or modify existing variables in the dataset.
+The paste() function concatenates the values of animal_name and species, with ” - ” as the separator.
 
 
 `8. (2 points)
@@ -137,6 +184,15 @@ print(species_plot)
 ```
 Write your narrative here
 
+Loading the Required Library:
+library(ggplot2): Loads the ggplot2 library, which provides functions for creating data visualizations.
+Creating a Bar Plot of Species Counts:
+species_plot <- ggplot(seattlepets, aes(x = species)) + geom_bar() + labs(title = "Counts of Species", x = "Species", y = "Count") + theme(axis.text.x = element_text(angle = 45, hjust = 1)):
+ggplot() initializes a new ggplot object.
+seattlepets specifies the dataset to be used.
+aes(x = species) maps the x-axis to the “species” column in the dataset.
+geom_bar() creates a bar plot where the height of each bar represents the count of occurrences of each species.
+labs() sets the title and axis labels for the plot.
 
 
 
@@ -149,7 +205,7 @@ top_10_names
 ```
 `a.	What does the above code chunk do?
 
-
+This code defines a vector top_10_names that contains the 10 most common pet names identified in Task 4. This list will be used to filter and analyze the dataset for these specific pet names
 
 `b. Plot the counts of the pet names (animal_name) in top_10_names
 ```{r}
@@ -158,7 +214,7 @@ filter(animal_name %in% c( "Lucy"  , "Charlie" , "Luna" , "Bella" , "Max"    ,
                            "Daisy" , "Molly"   , "Jack" , "Lily"  , "Stella" ))
 top_10_names
 ```
-
+The relationship between the proportion of cats with a given name and the proportion of dogs with the same name is negative. In the context of the data, this negative relationship means that as the proportion of cats with a given name increases, the proportion of dogs with the same name tends to decrease, and vice versa. This suggests an inverse relationship in the popularity of names between cats and dogs in the dataset
 
 `10.  (2 points)
 
